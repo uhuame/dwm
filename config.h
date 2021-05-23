@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=9" };
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "Firefox" };
+static const char *tags[] = { "1", "2", "3", "Chat", "Web" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -28,7 +28,10 @@ static const Rule rules[] = {
 	 */
 	/* class       instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",      NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",   NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "Steam",     NULL,       NULL,       1,            1,           -1 },
+	{ "firefox",   NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "trayer",    NULL,       NULL,       -1,           0,           -1 },
+	{ "TelegramDesktop",NULL,  NULL,       1<<3,         0,           -1 },
 };
 
 /* layout(s) */
@@ -44,7 +47,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -58,15 +61,18 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *lightdown[] ={"/home/crazy_li/scripts/lightdown.sh",NULL};
-static const char *lightup[] ={"/home/crazy_li/scripts/lightup.sh",NULL};
-
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *trayer[]   = {"/home/crazy_li/scripts/trayer.sh",NULL};
+static const char *xlight_up[]   = {"/home/crazy_li/scripts/lightup.sh",NULL};
+static const char *xlight_down[]   = {"/home/crazy_li/scripts/lightdown.sh",NULL};
+static const char *vol_up[]   = {"/home/crazy_li/scripts/volup.sh",NULL};
+static const char *vol_down[]   = {"/home/crazy_li/scripts/voldown.sh",NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lightdown } },
-	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = lightup } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -80,6 +86,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = trayer } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = xlight_up } },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xlight_down } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = vol_up } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = vol_down } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -93,10 +104,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
