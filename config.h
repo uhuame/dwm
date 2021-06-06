@@ -30,8 +30,9 @@ static const Rule rules[] = {
 	{ "Gimp",      NULL,       NULL,       0,            1,           -1 },
 	{ "Steam",     NULL,       NULL,       1,            1,           -1 },
 	{ "firefox",   NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "trayer",    NULL,       NULL,       -1,           0,           -1 },
+	{ "LBRY",      NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "TelegramDesktop",NULL,  NULL,       1<<3,         0,           -1 },
+	{ "Discord",   NULL,  	   NULL,       1<<3,         0,           -1 },
 };
 
 /* layout(s) */
@@ -68,6 +69,7 @@ static const char *xlight_up[]   = {"/home/crazy_li/scripts/lightup.sh",NULL};
 static const char *xlight_down[]   = {"/home/crazy_li/scripts/lightdown.sh",NULL};
 static const char *vol_up[]   = {"/home/crazy_li/scripts/volup.sh",NULL};
 static const char *vol_down[]   = {"/home/crazy_li/scripts/voldown.sh",NULL};
+static const char *screenshot[]   = {"/home/crazy_li/scripts/flameshot.sh",NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -91,6 +93,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xlight_down } },
 	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = vol_up } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = vol_down } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
