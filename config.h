@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "Chat", "Web" };
+static const char *tags[] = { "Game", "2", "3", "Chat", "Web" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -69,7 +69,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-static const char *trayer[]   = {"/home/crazy_li/scripts/trayer.sh",NULL};
 static const char *xlight_up[]   = {"/home/crazy_li/scripts/lightup.sh",NULL};
 static const char *xlight_down[]   = {"/home/crazy_li/scripts/lightdown.sh",NULL};
 static const char *vol_up[]   = {"/home/crazy_li/scripts/volup.sh",NULL};
@@ -93,7 +92,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = trayer } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = xlight_up } },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xlight_down } },
 	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = vol_up } },
