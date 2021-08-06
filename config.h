@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "Game", "Chat", "Web" };
+static const char *tags[] = { "1", "2", "3", "4", "5.web", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -33,7 +33,8 @@ static const Rule rules[] = {
 	 */
 	/* class       instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",      NULL,       NULL,       0,            1,           -1 },
-	{ "Steam",     NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "Steam",     NULL,      "Steam - ",  1 << 2,       1,           -1 },
+	{ "Steam",     NULL,       NULL,       1 << 2,       1,           -1 },
 	{ "firefox",   NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "LBRY",      NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "TelegramDesktop",NULL,  NULL,       1  <<  3,     0,           -1 },
@@ -110,6 +111,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_q,                      5)
+	TAGKEYS(                        XK_w,                      6)
+	TAGKEYS(                        XK_e,                      7)
+	TAGKEYS(                        XK_r,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
