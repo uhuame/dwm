@@ -23,7 +23,7 @@ print_temp(){
 print_bat(){
     if $(acpi -b | grep --quiet Full)
     then
-        echo "";
+        echo "|Battery:Full";
     else
 	echo "|Battery:$(acpi -b | awk '{print $3}').$(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc)%";
     fi
@@ -47,8 +47,10 @@ show_record(){
 	size=$(du -h $rp | awk '{print $1}')
 	echo " $size $(basename $rp)"
 }
-show_sleep(){
-    cat ~/scripts/status
+
+show_wifi(){
+    WIFI=$(nmcli | head -n 1 | sed -r  's/.*( .*).*/\1/')
+    echo "wifi:$WIFI"
 }
 
 #LOC=$(readlink -f "$0")
@@ -76,7 +78,7 @@ show_sleep(){
 #vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
 #vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
 
-xsetroot -name "$(show_sleep)$(print_mem)$(print_volume)$(print_GPU)$(print_xbacklight)$(print_bat) $(print_date) "
+xsetroot -name "$(show_wifi)$(print_mem)$(print_volume)$(print_xbacklight)$(print_bat) $(print_date) "
 
 # Update old values to perform new calculations
 old_received_bytes=$received_bytes
