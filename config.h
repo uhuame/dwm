@@ -33,10 +33,8 @@ static const Rule rules[] = {
 	 */
 	/* class       instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",      NULL,       NULL,       0,            1,           -1 },
-	{ "Steam",     NULL,      "Steam - ",  1 << 2,       1,           -1 },
 	{ "Steam",     NULL,       NULL,       1 << 2,       1,           -1 },
 	{ "firefox",   NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "LBRY",      NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "TelegramDesktop",NULL,  NULL,       1  <<  3,     0,           -1 },
 	{ "Discord",   NULL,  	   NULL,       1  <<  3,     0,           -1 },
 };
@@ -111,10 +109,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_q,                      5)
-	TAGKEYS(                        XK_w,                      6)
-	TAGKEYS(                        XK_e,                      7)
-	TAGKEYS(                        XK_r,                      8)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
